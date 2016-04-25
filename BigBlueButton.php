@@ -1,5 +1,5 @@
 <?php
-namespace arydeoblo\bigbluebutton;
+namespace arydeoblo\yii2bigbluebutton;
 
 use Yii;
 use yii\base\Object;
