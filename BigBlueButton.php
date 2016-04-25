@@ -25,16 +25,21 @@ Class BigBlueButton extends Object{
 	{
 		$api_request = $request;
 
-		$checksum =  http_build_query($params) . $this->server_secret;
+		$checksum =  $api_request . http_build_query($params) . $this->server_secret;
 
 		return $this->server_url. '/api/' . $request. '?checksum=' . sha1($checksum);
+	}
+
+	public function getResponse($response)
+	{
+		return file_get_contents($response);
 	}
 
 	public function getMeetings()
 	{
 		$getMeetings = $this->setUrl('getMeetings');
 
-		return $getMeetings;
+		return $this->getResponse($getMeetings);
 	}
 
 }
