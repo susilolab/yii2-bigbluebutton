@@ -13,10 +13,10 @@ Class BigBlueButton extends Object{
 
 	public function init()
 	{
-		if($this->$server == null){
+		if($this->$server_url == null){
 			throw new InvalidConfigException('You mus set server url configuration');
 		}
-		if($this->$secret == null){
+		if($this->$server_secret == null){
 			throw new InvalidConfigException('You mus set server secret configuration');
 		}
 	}
