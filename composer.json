@@ -1,0 +1,16 @@
+{
+  "name": "arydeoblo/yii2bigbluebutton",
+  "description": "Yii2 - BigBlueButton API Components",
+  "authors": [
+    {
+      "name": "Bahirul Rizki Ariyanto",
+      "email": "rizki.device@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "arydeoblo\\yii2bigbluebutton\\": ""
+    }
+  }
+}
+
