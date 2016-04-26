@@ -17,6 +17,8 @@ Class BigBlueButton extends Object{
 
 	public $response_type = 'array';
 
+	public $welcome = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br><br><br>To join the audio bridge click the headset icon (upper-left hand corner).  Use a headset to avoid causing background noise for others.<br>';
+
 	/**
 	 * Init class
 	 */
@@ -151,7 +153,7 @@ Class BigBlueButton extends Object{
 	 */
 	public function create($params)
 	{
-		$params = array_merge($params,['logoutURL' => Url::base(true)]);
+		$params = array_merge($params,['logoutURL' => Url::base(true),'welcome' => $this->welcome ]);
 
 		$create = $this->setUrl(BbbApiRequest::create,$params);
 
