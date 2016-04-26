@@ -3,7 +3,7 @@ namespace arydeoblo\yii2bigbluebutton\migrations;
 
 use yii\db\Migration;
 
-class bbb_meeting extends Migration
+class m151024_074167_bbb_meeting extends Migration
 {
 
     public function up()
