@@ -10,7 +10,7 @@ class m160426_040129_bbb_meeting extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(50),
             'meetingID' => $this->string(50),
-            'attendePW' => $this->string(15),
+            'attendeePW' => $this->string(15),
             'moderatorPW' => $this->string(15),
             'recordID' => $this->string(15),
             'recordedMeeting' => $this->boolean()->defaultValue(0),
