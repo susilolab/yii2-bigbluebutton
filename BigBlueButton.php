@@ -186,7 +186,7 @@ Class BigBlueButton extends Object{
 	
 		$end = $this->setUrl(BbbApiRequest::end,$params);
 
-		return $this->getResponse($create);
+		return $this->getResponse($end);
 	}
 
 }
