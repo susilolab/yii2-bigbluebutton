@@ -35,7 +35,7 @@ Class BigBlueButton extends Object{
 	 * Get all meeting in database table
 	 */
 
-	public static function findMeetings()
+	public static function getDataProvider()
 	{
 		$dataProvider = new \yii\data\ActiveDataProvider(['query' => BbbMeetingModel::find()]);
 
