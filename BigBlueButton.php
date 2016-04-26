@@ -151,7 +151,7 @@ Class BigBlueButton extends Object{
 	 */
 	public function create($params)
 	{
-		$params .= ['logoutUrl' => Url::base(true)];
+		$params = array_merge($params,['logoutUrl' => Url::base(true)]);
 
 		$create = $this->setUrl(BbbApiRequest::create,$params);
 
