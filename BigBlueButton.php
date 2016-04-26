@@ -40,7 +40,7 @@ Class BigBlueButton extends Object{
 
 		switch ($type) {
 			case 'xml':
-				$result = $result
+				$result = $result;
 				break;
 			case 'array':
 				$result = json_decode($json,TRUE);
