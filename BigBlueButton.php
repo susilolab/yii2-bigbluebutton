@@ -13,12 +13,14 @@ Class BigBlueButton extends Object{
 
 	public $server_secret;
 
+	public $response_type = 'json';
+
 	public function init()
 	{
-		if($this->server_url == null){
+		if($this->server_url == null | Yii::$app->params['bbb_server'] == null){
 			throw new InvalidConfigException('You mus set server url configuration');
 		}
-		if($this->server_secret == null){
+		if($this->server_secret == null | Yii::$app->params['bbb_secret'] == null){
 			throw new InvalidConfigException('You mus set server secret configuration');
 		}
 	}
@@ -32,8 +34,10 @@ Class BigBlueButton extends Object{
 		return $this->server_url. '/api/' . $request. '?checksum=' . sha1($checksum);
 	}
 
-	public function getResponse($response,$type='json')
+	public function getResponse($response,$type = $this->response_type)
 	{
+		$type = $this->response_type;
+
 		$result = file_get_contents($response);
 
 		$json = json_encode(simplexml_load_string($result));
