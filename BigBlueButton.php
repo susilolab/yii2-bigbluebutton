@@ -56,7 +56,7 @@ Class BigBlueButton extends Object{
 				break;
 		}
 
-		return result;
+		return $result;
 	}
 
 	/**
