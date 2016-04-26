@@ -85,7 +85,7 @@ Class BigBlueButton extends Object{
 		$return_code = json_decode($json,TRUE)['return_code'];
 
 		if($return_code != 'SUCCESS'){
-			throw new ServerErrorHttpException('Error get response from BigBlueButton server, please check your server secret or server url.')
+			throw new ServerErrorHttpException('Error get response from BigBlueButton server, please check your server secret or server url.');
 		}
 
 		return $result;
