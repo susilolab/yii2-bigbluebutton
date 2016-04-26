@@ -4,6 +4,7 @@ namespace arydeoblo\yii2bigbluebutton;
 use Yii;
 use yii\base\Object;
 use yii\base\InvalidConfigException;
+use yii\web\ServerErrorHttpException
 
 use arydeoblo\yii2bigbluebutton\BbbApiRequest;
 use arydeoblo\yii2bigbluebutton\BbbMeetingModel;
@@ -79,6 +80,12 @@ Class BigBlueButton extends Object{
 			default:
 				$result = $json;
 				break;
+		}
+
+		$return_code = json_decode($json,TRUE)['return_code'];
+
+		if($return_code != 'SUCCESS'){
+			throw new ServerErrorHttpException('Error get response from BigBlueButton server, please check your server secret or server url.')
 		}
 
 		return $result;
