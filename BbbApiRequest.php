@@ -1,7 +1,7 @@
 <?php
 namespace arydeoblo\yii2bigbluebutton;
 
-class BbbApiMethod{
+class BbbApiRequest{
 	/**
 	 * Bbb Resource
 	 */
