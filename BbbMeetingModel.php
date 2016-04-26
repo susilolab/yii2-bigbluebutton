@@ -13,7 +13,7 @@ class BbbMeetingModel extends ActiveRecord{
 	public function rules()
 	{
 		return [
-			[['name','meetingID','attendePW','moderatorPW','recordedMeeting'],'required'],
+			[['name','meetingID','attendePW','moderatorPW'],'required'],
 			[['meetingID','name'],'unique'],
 		];
 	}
@@ -25,7 +25,6 @@ class BbbMeetingModel extends ActiveRecord{
 			'meetingID' => 'Meeting ID',
 			'attendePW' => 'Attendence Password',
 			'moderatorPW' => 'Moderator Password',
-			'recordedMeeting' => 'Recorded Meeting',
 		];
 	}
 
