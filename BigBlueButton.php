@@ -13,7 +13,7 @@ Class BigBlueButton extends Object{
 	private $server_secret;
 	private $server_url;
 
-	public $response_type = 'json';
+	public $response_type = 'array';
 
 	/**
 	 * Init class
