@@ -13,10 +13,10 @@ Class BigBlueButton extends Object{
 
 	public function init()
 	{
-		if(!isset(Yii::$app->params['bbb_server']) && Yii::$app->params['bbb_server'] == null){
+		if(!array_key_exists('bbb_server',Yii::$app->params) && Yii::$app->params['bbb_server'] == null){
 			throw new InvalidConfigException('You mus set server url configuration in Yii Params');
 		}
-		if(!isset(Yii::$app->params['bbb_secret']) && Yii::$app->params['bbb_secret'] == null){
+		if(!array_key_exists('bbb_secret',Yii::$app->params) && Yii::$app->params['bbb_secret'] == null){
 			throw new InvalidConfigException('You mus set server secret configuration in Yii Params');
 		}
 	}
