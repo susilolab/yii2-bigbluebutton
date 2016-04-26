@@ -53,11 +53,29 @@ Class BigBlueButton extends Object{
 		return result;
 	}
 
+	/**
+	 * Monitoring Resource
+	 */
+
 	public function getMeetings()
 	{
 		$getMeetings = $this->setUrl(BbbApiRequest::getMeetings);
 
 		return $this->getResponse($getMeetings);
+	}
+
+	public function isMeetingRunning($meetingID)
+	{
+		$isMeetingRunning = $this->setUrl(BbbApiRequest::isMeetingRunning,['meetingID' => $meetingID]);
+
+		return $this->getResponse($isMeetingRunning);
+	}
+
+	public function getMeetingInfo($meetingID,$moderator_pass)
+	{
+		$getMeetingInfo = $this->setUrl(BbbApiRequest::getMeetingInfo,['meetingID' => $meetingID, 'password' => $moderator_pass]);
+
+		return $this->getResponse($getMeetingInfo);
 	}
 
 }
