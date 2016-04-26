@@ -78,7 +78,7 @@ Class BigBlueButton extends Object{
 	{
 		$isMeetingRunning = $this->setUrl(BbbApiRequest::isMeetingRunning,['meetingID' => $meetingID]);
 
-		return $isMeetingRunning;
+		return $this->getResponse($isMeetingRunning);
 	}
 
 	public function getMeetingInfo($meetingID,$moderator_pass)
