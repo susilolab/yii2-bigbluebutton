@@ -8,4 +8,11 @@ class BbbMeetingModel extends ActiveRecord{
 	{
 		return 'bbb_meeting';
 	}
+
+	public function rules()
+	{
+		return [
+			[['name','meetingID','attendePW','moderatorPW','recordeMeeting'],'required']
+		];
+	}
 } 
