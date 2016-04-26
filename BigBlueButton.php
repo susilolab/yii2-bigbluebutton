@@ -31,9 +31,13 @@ Class BigBlueButton extends Object{
 	{
 		$api_request = $request;
 
-		$checksum =  $api_request . http_build_query($params) . $this->server_secret;
+		$params_url = $params == null ? '' : http_build_query($params) . '&';
 
-		return $this->server_url. '/api/' . $request. '?checksum=' . sha1($checksum);
+		$params_checksum = http_build_query($params);
+
+		$checksum =  $api_request . $params_checksum . $this->server_secret;
+
+		return $this->server_url. '/api/' . $request. '?' . $params_url . 'checksum=' . sha1($checksum);
 	}
 
 	public function getResponse($response)
@@ -74,7 +78,7 @@ Class BigBlueButton extends Object{
 	{
 		$isMeetingRunning = $this->setUrl(BbbApiRequest::isMeetingRunning,['meetingID' => $meetingID]);
 
-		return $this->getResponse($isMeetingRunning);
+		return $isMeetingRunning;
 	}
 
 	public function getMeetingInfo($meetingID,$moderator_pass)
