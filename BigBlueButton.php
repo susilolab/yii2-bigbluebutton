@@ -152,7 +152,7 @@ Class BigBlueButton extends Object{
 	public function create($params)
 	{
 		$params .= ['logoutUrl' => Url::base(true)];
-		
+
 		$create = $this->setUrl(BbbApiRequest::create,$params);
 
 		return $this->getResponse($create);
@@ -174,6 +174,19 @@ Class BigBlueButton extends Object{
 	 */
 	public function join($params){
 		return $this->setUrl(BbbApiRequest::join,$params);
+	}
+
+	/**
+	 * end a meeting
+	 * @param string $params['password']
+	 * @param string $params['meetingID']
+	 **/
+	public function end($params)
+	{
+	
+		$end = $this->setUrl(BbbApiRequest::end,$params);
+
+		return $this->getResponse($create);
 	}
 
 }
