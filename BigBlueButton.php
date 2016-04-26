@@ -81,11 +81,40 @@ Class BigBlueButton extends Object{
 		return $this->getResponse($isMeetingRunning);
 	}
 
-	public function getMeetingInfo($meetingID,$moderator_pass)
+	public function getMeetingInfo($meetingID,$moderatorPW)
 	{
-		$getMeetingInfo = $this->setUrl(BbbApiRequest::getMeetingInfo,['meetingID' => $meetingID, 'password' => $moderator_pass]);
+		$getMeetingInfo = $this->setUrl(BbbApiRequest::getMeetingInfo,['meetingID' => $meetingID, 'password' => $moderatorPW]);
 
 		return $this->getResponse($getMeetingInfo);
+	}
+
+	/**
+	 * Administration Resource
+	 */
+
+	/**
+	 * Create a meeting
+	 * @param string $params['name']
+	 * @param string $params['meetingID']
+	 * @param string $params['attendeePW']
+	 * @param string $params['moderatorPW']
+	 * @param string $params['welcome']
+	 * @param string $params['dialNumber']
+	 * @param string $params['voiceBridge']
+	 * @param string $params['webVoice']
+	 * @param string $params['logoutUrl']
+	 * @param string $params['record']
+	 * @param integer $params['duration']
+	 * @param string $params['meta']
+	 * @param string $params['moderatorOnlyMessage']
+	 * @param boolean $params['autoStartRecording']
+	 * @param boolean $params['allowStartStopRecording']
+	 */
+	public function create($params)
+	{
+		$create = $this->setUrl(BbbApiRequest::create,$params);
+
+		return $this->getResponse($create);
 	}
 
 }
