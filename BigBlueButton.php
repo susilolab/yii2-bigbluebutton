@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Object;
 use yii\base\InvalidConfigException;
 use yii\web\ServerErrorHttpException;
+use yii\helpers\Url;
 
 use arydeoblo\yii2bigbluebutton\BbbApiRequest;
 use arydeoblo\yii2bigbluebutton\BbbMeetingModel;
@@ -150,6 +151,8 @@ Class BigBlueButton extends Object{
 	 */
 	public function create($params)
 	{
+		$params .= ['logoutUrl' => Url::base(true)];
+		
 		$create = $this->setUrl(BbbApiRequest::create,$params);
 
 		return $this->getResponse($create);
