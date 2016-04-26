@@ -6,6 +6,7 @@ use yii\base\Object;
 use yii\base\InvalidConfigException;
 
 use arydeoblo\yii2bigbluebutton\BbbApiRequest;
+use arydeoblo\yii2bigbluebutton\BbbMeetingModel;
 
 Class BigBlueButton extends Object{
 
@@ -14,6 +15,9 @@ Class BigBlueButton extends Object{
 
 	public $response_type = 'json';
 
+	/**
+	 * Init class
+	 */
 	public function init()
 	{
 		if(!array_key_exists('bbb_server',Yii::$app->params) && Yii::$app->params['bbb_server'] == null){
@@ -27,6 +31,20 @@ Class BigBlueButton extends Object{
 		$this->server_secret = Yii::$app->params['bbb_secret'];
 	}
 
+	/**
+	 * Get all meeting in database table
+	 */
+
+	public static function findMeetings()
+	{
+		$dataProvider = new \yii\data\ActiveDataProvider(['query' => BbbMeetingModel::find()]);
+
+		return $dataProvider;
+	}
+
+	/**
+	 * Set URL Request
+	 */
 	public function setUrl($request,$params=[])
 	{
 		$api_request = $request;
@@ -40,6 +58,9 @@ Class BigBlueButton extends Object{
 		return $this->server_url. '/api/' . $request. '?' . $params_url . 'checksum=' . sha1($checksum);
 	}
 
+	/**
+	 * Get Response
+	 */
 	public function getResponse($response)
 	{
 		$type = $this->response_type;
@@ -67,6 +88,9 @@ Class BigBlueButton extends Object{
 	 * Monitoring Resource
 	 */
 
+	/**
+	 * Get all running meetings
+	 */
 	public function getMeetings()
 	{
 		$getMeetings = $this->setUrl(BbbApiRequest::getMeetings);
@@ -74,6 +98,9 @@ Class BigBlueButton extends Object{
 		return $this->getResponse($getMeetings);
 	}
 
+	/**
+	 * Check meeting is running
+	 */
 	public function isMeetingRunning($meetingID)
 	{
 		$isMeetingRunning = $this->setUrl(BbbApiRequest::isMeetingRunning,['meetingID' => $meetingID]);
@@ -81,6 +108,9 @@ Class BigBlueButton extends Object{
 		return $this->getResponse($isMeetingRunning);
 	}
 
+	/**
+	 * Get meeting info
+	 */
 	public function getMeetingInfo($meetingID,$moderatorPW)
 	{
 		$getMeetingInfo = $this->setUrl(BbbApiRequest::getMeetingInfo,['meetingID' => $meetingID, 'password' => $moderatorPW]);
