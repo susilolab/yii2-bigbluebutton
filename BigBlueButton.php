@@ -9,19 +9,15 @@ use BbbApiRequest;
 
 Class BigBlueButton extends Object{
 
-	public $server_url;
-
-	public $server_secret;
-
 	public $response_type = 'json';
 
 	public function init()
 	{
-		if($this->server_url == null | Yii::$app->params['bbb_server'] == null){
-			throw new InvalidConfigException('You mus set server url configuration');
+		if(!isset(Yii::$app->params['bbb_server']) && Yii::$app->params['bbb_server'] == null){
+			throw new InvalidConfigException('You mus set server url configuration in Yii Params');
 		}
-		if($this->server_secret == null | Yii::$app->params['bbb_secret'] == null){
-			throw new InvalidConfigException('You mus set server secret configuration');
+		if(!isset(Yii::$app->params['bbb_secret']) && Yii::$app->params['bbb_secret'] == null){
+			throw new InvalidConfigException('You mus set server secret configuration in Yii Params');
 		}
 	}
 
