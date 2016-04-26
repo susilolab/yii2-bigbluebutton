@@ -140,7 +140,7 @@ Class BigBlueButton extends Object{
 	 * @param string $params['dialNumber']
 	 * @param string $params['voiceBridge']
 	 * @param string $params['webVoice']
-	 * @param string $params['logoutUrl']
+	 * @param string $params['logoutURL']
 	 * @param string $params['record']
 	 * @param integer $params['duration']
 	 * @param string $params['meta']
@@ -151,7 +151,7 @@ Class BigBlueButton extends Object{
 	 */
 	public function create($params)
 	{
-		$params = array_merge($params,['logoutUrl' => Url::base(true)]);
+		$params = array_merge($params,['logoutURL' => Url::base(true)]);
 
 		$create = $this->setUrl(BbbApiRequest::create,$params);
 
