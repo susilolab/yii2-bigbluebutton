@@ -36,15 +36,17 @@ Class BigBlueButton extends Object{
 	{
 		$result = file_get_contents($response);
 
+		$json = json_encode(simplexml_load_string($result));
+
 		switch ($type) {
 			case 'xml':
 				$result = $result
 				break;
 			case 'array':
-				$result = json_decode(json_encode($result),TRUE);
+				$result = json_decode($json,TRUE);
 				break;
 			default:
-				$result = json_encode($result)
+				$result = $json;
 				break;
 		}
 
