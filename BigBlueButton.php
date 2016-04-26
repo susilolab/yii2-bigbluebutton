@@ -30,7 +30,7 @@ Class BigBlueButton extends Object{
 		return $this->server_url. '/api/' . $request. '?checksum=' . sha1($checksum);
 	}
 
-	public function getResponse($response,$type = $this->response_type)
+	public function getResponse($response)
 	{
 		$type = $this->response_type;
 
