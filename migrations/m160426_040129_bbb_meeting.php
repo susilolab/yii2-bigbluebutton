@@ -1,11 +1,9 @@
 <?php
-namespace arydeoblo\yii2bigbluebutton\migrations;
 
 use yii\db\Migration;
 
-class m151024_074167_bbb_meeting extends Migration
+class m160426_040129_bbb_meeting extends Migration
 {
-
     public function up()
     {
         $this->createTable('bbb_meeting', [
@@ -22,4 +20,15 @@ class m151024_074167_bbb_meeting extends Migration
     {
         $this->dropTable('bbb_meeting');
     }
+
+    /*
+    // Use safeUp/safeDown to run migration code within a transaction
+    public function safeUp()
+    {
+    }
+
+    public function safeDown()
+    {
+    }
+    */
 }
