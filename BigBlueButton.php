@@ -146,12 +146,31 @@ Class BigBlueButton extends Object{
 	 * @param string $params['moderatorOnlyMessage']
 	 * @param boolean $params['autoStartRecording']
 	 * @param boolean $params['allowStartStopRecording']
+	 * return sting xml,json,or array
 	 */
 	public function create($params)
 	{
 		$create = $this->setUrl(BbbApiRequest::create,$params);
 
 		return $this->getResponse($create);
+	}
+
+	/**
+	 * join a meeting
+	 * @param string $params['fullNname']
+	 * @param string $params['meetingID']
+	 * @param string $params['password']
+	 * @param string $params['createTime']
+	 * @param string $params['userID']
+	 * @param string $params['webVoiceConf']
+	 * @param string $params['configToken']
+	 * @param string $params['avatarURL']
+	 * @param string $params['redirect']
+	 * @param string $params['clientURL']
+	 * return string Url
+	 */
+	public function join($params){
+		return $this->setUrl(BbbApiRequest::join,$params);
 	}
 
 }
