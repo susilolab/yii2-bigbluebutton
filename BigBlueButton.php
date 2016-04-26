@@ -5,9 +5,12 @@ use Yii;
 use yii\base\Object;
 use yii\base\InvalidConfigException;
 
-use BbbApiRequest;
+use arydeoblo\yii2bigbluebutton\BbbApiRequest;
 
 Class BigBlueButton extends Object{
+
+	private $server_secret;
+	private $server_url;
 
 	public $response_type = 'json';
 
@@ -19,6 +22,9 @@ Class BigBlueButton extends Object{
 		if(!array_key_exists('bbb_secret',Yii::$app->params) && Yii::$app->params['bbb_secret'] == null){
 			throw new InvalidConfigException('You mus set server secret configuration in Yii Params');
 		}
+
+		$this->server_url = Yii::$app->params['bbb_server'];
+		$this->server_secret = Yii::$app->params['bbb_secret'];
 	}
 
 	public function setUrl($request,$params=[])
