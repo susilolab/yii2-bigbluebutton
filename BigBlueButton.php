@@ -65,11 +65,17 @@ Class BigBlueButton extends Object{
 	/**
 	 * Get Response
 	 */
-	public function getResponse($response)
+	public function getResponse($request)
 	{
 		$type = $this->response_type;
 
-		$result = file_get_contents($response);
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $request)
+
+		$result = curl_exec($ch);
+
+		curl_close($ch);
 
 		$json = json_encode(simplexml_load_string($result));
 
