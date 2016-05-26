@@ -17,7 +17,7 @@ Class BigBlueButton extends Object{
 
 	public $response_type = 'array';
 
-	public $welcome = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br><br><br>To join the audio bridge click the headset icon (upper-left hand corner).  Use a headset to avoid causing background noise for others.<br>';
+	public $welcome = '<br>Welcome to <b>%%CONFNAME%%</b> room!<br><br><br><br>To join the audio bridge click the headset icon (upper-left hand corner).  Use a headset to avoid causing background noise for others.<br>';
 
 	/**
 	 * Init class
@@ -69,13 +69,7 @@ Class BigBlueButton extends Object{
 	{
 		$type = $this->response_type;
 
-		$ch = curl_init();
-
-		curl_setopt($ch, CURLOPT_URL, $request)
-
-		$result = curl_exec($ch);
-
-		curl_close($ch);
+		$result = file_get_contents($request);
 
 		$json = json_encode(simplexml_load_string($result));
 
@@ -181,7 +175,37 @@ Class BigBlueButton extends Object{
 	 * return string Url
 	 */
 	public function join($params){
-		return $this->setUrl(BbbApiRequest::join,$params);
+
+		$url = $this->setUrl(BbbApiRequest::join,$params);
+
+		$meeting = BbbMeetingModel::findOneMeeting(['meetingID' => $params['meetingID']]);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$result = curl_exec($ch);
+		$info = curl_getinfo($ch);
+		curl_close($ch);
+
+		if($meeting && $info['content_type'] == 'text/xml;charset=utf-8'){
+
+			$meetingID = \Yii::$app->getSecurity()->generateRandomString(15);
+
+			$old_params = ['name' => $meeting->name,'meetingID' => $meetingID,'attendeePW' => $meeting->attendeePW, 'moderatorPW' => $meeting->moderatorPW];
+			$new_params = array_merge($old_params,['logoutURL' => Url::base(true),'welcome' => $this->welcome ]);
+
+			$create_on_server = $this->create($new_params);
+
+			$meeting->meetingID = $meetingID;
+			$meeting->update();
+
+			$url = $this->setUrl(BbbApiRequest::join,['meetingID' => $meetingID,'fullName' => $params['fullName'],'password' => $params['password']]);
+
+		}
+
+
+		return $url;
+
 	}
 
 	/**
